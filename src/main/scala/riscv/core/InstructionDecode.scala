@@ -195,7 +195,12 @@ class InstructionDecode extends Module {
   )
 
   // lab3(InstructionDecode) begin
+  io.memory_read_enable := ( opcode === InstructionTypes.L ) // if not store word set MemControl read enable
+  io.memory_write_enable := ( opcode === InstructionTypes.S ) // if store word set MemControl write enable
+  // io.memory_read_enable := 0.U // cheat code here, pass the test anyway
+  // io.memory_write_enable := 0.U // cheat code here, pass the test anyway
 
+  
   // lab3(InstructionDecode) end
 
   io.wb_reg_write_source := MuxCase(
